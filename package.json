@@ -1,0 +1,71 @@
+{
+  "name": "scoop-form",
+  "version": "0.5.4",
+  "description": "Form components with a11y and validation",
+  "main": "./dist/scoop-form.js",
+	"files": [
+		"dist/*"
+	],
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+		"build-bundle": "vue-cli-service build --target lib --name scoopForm ./src/index.js",
+		"build-npm": "rollup -c rollup.config.js",
+    "lint": "vue-cli-service lint"
+  },
+	"repository": {
+    "type": "git",
+    "url": "git+https://github.com/plehnen/scoop-form.git"
+  },
+	 "keywords": [
+    "a11y",
+    "aria",
+    "vue",
+    "vue.js",
+		"form",
+		"validation"
+  ],
+  "author": "SCOOP Software GmbH",
+  "license": "MIT",
+	"dependencies": {
+    "vue": "^2.6.6",
+		"lodash": "4.17.11"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.5.0",
+    "@vue/cli-plugin-eslint": "^3.5.0",
+    "@vue/cli-service": "^3.5.0",
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.8.0",
+    "eslint-plugin-vue": "^5.0.0",
+    "vue-template-compiler": "^2.5.21",
+		"rollup": "^0.66.6",
+    "rollup-plugin-commonjs": "^9.2.0",
+    "rollup-plugin-node-resolve": "^3.4.0",
+    "rollup-plugin-vue": "^4.3.2"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "rules": {},
+    "parserOptions": {
+      "parser": "babel-eslint"
+    }
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
+}
