@@ -1,11 +1,6 @@
 describe('General Form Element Tests', () => {
   before(() => {
-    cy.server();
-    cy.route('GET', '/api/i18n', 'fixture:i18n').as('getI18n');
-    cy.cleanVisit('/test/form');
-    cy.get('[data-test=language]')
-      .contains('Deutsch')
-      .click();
+    cy.cleanVisit('/');
   });
 
   it('shows no errors in beginning', () => {

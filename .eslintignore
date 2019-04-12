@@ -1,0 +1,5 @@
+/dist/
+/build/
+/tests/unit/coverage/
+
+rollup.config.js

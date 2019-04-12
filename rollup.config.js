@@ -1,17 +1,13 @@
-import commonjs from "rollup-plugin-commonjs";
-import nodeResolve from "rollup-plugin-node-resolve";
-import vue from "rollup-plugin-vue";
+import commonjs from 'rollup-plugin-commonjs';
+import nodeResolve from 'rollup-plugin-node-resolve';
+import vue from 'rollup-plugin-vue';
 
 export default {
-  input: "src/index.js",
+  input: 'src/index.js',
   output: {
-    file: "dist/scoop-form.js",
-    format: "esm"
+    file: 'dist/scoop-form.js',
+    format: 'esm',
   },
-  external: ["vue", "lodash/merge"],
-  plugins: [
-    nodeResolve({ jsnext: true }),
-    commonjs(),
-    vue()
-  ]
+  external: ['vue', 'vue-i18n', 'lodash/merge'],
+  plugins: [nodeResolve({ jsnext: true }), commonjs(), vue()],
 };

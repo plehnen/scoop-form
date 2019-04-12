@@ -13,8 +13,8 @@
       class="form-input"
       v-bind="$attrs"
       :disabled="isDisabled"
-      @input="updateValue($event.target.value)"
-      @change="checkValue"
+      @input="onUpdateValue($event.target.value)"
+      @change="onChange"
     />
   </div>
 </template>
@@ -68,6 +68,11 @@ export default {
       required: false,
       default: null,
     },
+
+    immediate: {
+      type: Boolean,
+      required: false,
+    },
   },
 
   data() {
@@ -90,7 +95,7 @@ export default {
     },
 
     isError() {
-      return !this.isBeingChanged && !this.field.isValid && this.field.isChecked;
+      return (!this.isBeingChanged || this.immediate) && !this.field.isValid && (this.field.isChecked || this.immediate);
     },
 
     isDisabled() {
@@ -135,14 +140,19 @@ export default {
       }
     },
 
-    updateValue(val) {
+    onUpdateValue(val) {
       this.isBeingChanged = true;
       this.internalValue = val;
+      if (this.immediate) this.checkValue();
       this.$emit('input', this.internalValue);
     },
 
-    checkValue() {
+    onChange() {
+      this.checkValue();
       this.isBeingChanged = false;
+    },
+
+    checkValue() {
       this.field.filters.forEach(filter => {
         this.internalValue = filter(this.internalValue, this.state);
       });

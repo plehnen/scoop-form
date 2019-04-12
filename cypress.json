@@ -1,0 +1,15 @@
+{
+  "pluginsFile": "tests/e2e/plugins/index.js",
+  "integrationFolder": "tests/e2e/specs/",
+  "waitForAnimations": true,
+  "trashAssetsBeforeRuns": true,
+  "videoUploadOnPasses": false,
+  "videosFolder": "tests/e2e/videos",
+  "screenshotsFolder": "tests/e2e/screenshots",
+  "reporter": "mochawesome",
+  "reporterOptions": {
+    "overwrite": "false",
+    "json": "true",
+    "html": "false"
+  }
+}
