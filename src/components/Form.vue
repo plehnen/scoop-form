@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { promiseAllFields, checkValidations, resetValidations, focusFirst, getFormValues } from '@/utils/form';
+import { promiseAllFields, checkValidations, resetValidations, focusFirst, getFormValues } from '../utils/form';
 
 export default {
   name: 'FormBase',

@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import { emptyFormElement } from '@/utils/form';
+import { emptyFormElement } from '../utils/form';
 
 export default {
   name: 'FormInput',
