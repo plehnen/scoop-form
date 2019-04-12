@@ -4,7 +4,13 @@ A collection of form components and utils for validation and handling basic a11y
 
 This software is hardly bound to our clients needs.
 
-## Example
+## Install
+
+```bash
+yarn add scoop-form -S
+```
+
+## Basic example
 
 ```vue
 <template>
@@ -30,7 +36,7 @@ export default {
     };
   },
 
-  methods() {
+  methods: {
     onSubmit({ values, form, isValid }) {
       // ...
     },
@@ -38,6 +44,8 @@ export default {
 };
 </script>
 ```
+
+---
 
 ## Project setup
 
