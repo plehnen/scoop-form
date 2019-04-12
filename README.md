@@ -15,7 +15,7 @@ yarn dev
 ### Compiles for npm
 
 ```bash
-yarn run build-npm
+yarn run build:npm
 ```
 
 ### Manually modify dist file
