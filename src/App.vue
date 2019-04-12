@@ -2,11 +2,30 @@
   <div id="app">
     <h1>SCOOP Form</h1>
 
+    <h2>disable-on-valid-submit example</h2>
+
+    <p
+      >With <code>disable-on-valid-submit</code> the scope variable <code>isDisabled</code> is set to true once the submit is called and all validations are
+      succeeded.</p
+    >
+
+    <VForm v-slot="{ isDisabled }" :form="form3" disable-on-valid-submit @submit="onSubmit">
+      <VInput name="input301" :required="true" hint="Invalid!" legend="This requires min length of 10"> </VInput>
+
+      <button type="submit" class="btn btn-brand" :disabled="isDisabled">Submit</button>
+    </VForm>
+
+    <h2>Immediate example</h2>
+
+    <p>To run the validations immediately, you can use the <code>immediate</code> attribute on the Input field.</p>
+
     <VForm data-test="form2" :form="form2">
-      <VInput name="input201" :required="true" hint="ERROR" immediate> </VInput>
+      <VInput name="input201" :required="true" hint="Invalid!" legend="This requires are valid email of min length 10" immediate> </VInput>
     </VForm>
 
     <hr />
+
+    <h2>Complex example of a form with lots of validations and mostly all combinations of fields:</h2>
 
     <VForm data-test="form1" :form="form" optional-validation @submit="onSubmit">
       <VSelect name="select1" legend="Select legend <b>with HTML</b> support" label="Select label <b>with HTML</b> support" hint="Select hint" />
@@ -20,6 +39,8 @@
       >
         Slot-Content <b>with HTML</b> support0
       </VCheckbox>
+
+      <p>Optionally it is possible to add a <code>v-model</code> to any field, to have direct access to the value.</p>
 
       <VCheckbox
         v-model="test1"
@@ -190,6 +211,8 @@ export default {
   },
 
   data() {
+    const form3 = initFields({ name: 'input301', validators: [hasMinLength(10)] });
+
     const form2 = initFields({ name: 'input201', validators: [isValidEmail, hasMinLength(10)] });
 
     const form = initFields(
@@ -271,6 +294,7 @@ export default {
       input7: '',
       form,
       form2,
+      form3,
       isValid: 'unknown',
     };
   },
