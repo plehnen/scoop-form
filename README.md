@@ -1,5 +1,44 @@
 # scoop-form
 
+A collection of form components and utils for validation and handling basic a11y tasks, such as focussing the first erroneous field or placing the error message inside the label.
+
+This software is hardly bound to our clients needs.
+
+## Example
+
+```vue
+<template>
+  <VForm :form="myForm" @submit="onSubmit">
+    <VInput name="input1" :required="true" hint="Err msg" placeholder="..." legend="Label xyz" />
+  </VForm>
+</template>
+
+<script>
+import { Form, Input, initFields } from 'scoop-form';
+
+export default {
+  name: 'Example',
+
+  components: {
+    Form,
+    Input,
+  },
+
+  data() {
+    return {
+      myForm: initFields({ name: 'input1' }),
+    };
+  },
+
+  methods() {
+    onSubmit({ values, form, isValid }) {
+      // ...
+    },
+  },
+};
+</script>
+```
+
 ## Project setup
 
 ```bash
@@ -34,7 +73,7 @@ npm publish --access public
 ### Run your tests
 
 ```bash
-yarn run test
+yarn run test:e2e
 ```
 
 ### Lints and fixes files
