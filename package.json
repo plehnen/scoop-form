@@ -1,6 +1,6 @@
 {
   "name": "scoop-form",
-  "version": "0.5.7",
+  "version": "0.5.9",
   "description": "Form components with a11y and validation",
   "main": "./dist/scoop-form.js",
   "files": [

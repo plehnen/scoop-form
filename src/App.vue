@@ -2,6 +2,28 @@
   <div id="app">
     <h1>SCOOP Form</h1>
 
+    <h2>Post-invalidate</h2>
+
+    <VForm :form="form5" optional-validation @submit="onSubmit5">
+      <VInput name="input501" :required="true" hint="Invalid!" legend="This requires min length of 10"> </VInput>
+      <button type="submit" class="btn btn-brand">
+        Submit
+      </button>
+    </VForm>
+    isValid: {{ test2 }}
+
+    <hr />
+
+    <h2>Emit "isValid" state to parent</h2>
+
+    <VForm immediate :form="form4" @submit="onSubmit" @valid="test2 = $event">
+      <VInput immediate name="input401" :required="true" hint="Invalid!" legend="This requires min length of 10"> </VInput>
+      <VInput immediate name="input402" :required="true" hint="Invalid!" legend="This requires min length of 10"> </VInput>
+    </VForm>
+    isValid: {{ test2 }}
+
+    <hr />
+
     <h2>disable-on-valid-submit example</h2>
 
     <p
@@ -15,20 +37,14 @@
       <button type="submit" class="btn btn-brand" :disabled="isDisabled">Submit</button>
     </VForm>
 
-    <h2>Immediate example</h2>
-
-    <p>To run the validations immediately, you can use the <code>immediate</code> attribute on the Input field.</p>
-
-    <VForm data-test="form2" :form="form2">
-      <VInput name="input201" :required="true" hint="Invalid!" legend="This requires are valid email of min length 10" immediate> </VInput>
-    </VForm>
-
     <hr />
 
     <h2>Complex example of a form with lots of validations and mostly all combinations of fields:</h2>
 
     <VForm data-test="form1" :form="form" optional-validation @submit="onSubmit">
       <VSelect name="select1" legend="Select legend <b>with HTML</b> support" label="Select label <b>with HTML</b> support" hint="Select hint" />
+
+      <VSelect name="select2" legend="SHOULD BE HIDDEN" label="SHOULD BE HIDDEN" hint="SHOULD BE HIDDEN" />
 
       <VCheckbox
         v-model="test0"
@@ -187,6 +203,7 @@ import VCheckbox from '@/components/Checkbox';
 import VMulticheckbox from '@/components/MultiCheckbox';
 import VSelect from '@/components/Select';
 import {
+  focusFirst,
   initFields,
   isValidEmail,
   isValidEmailOrEmpty,
@@ -211,12 +228,14 @@ export default {
   },
 
   data() {
+    const form5 = initFields({ name: 'input501', validators: [hasMinLength(10)] });
+    const form4 = initFields({ name: 'input401', validators: [hasMinLength(10)] }, { name: 'input402', validators: [hasMinLength(10)] });
     const form3 = initFields({ name: 'input301', validators: [hasMinLength(10)] });
-
     const form2 = initFields({ name: 'input201', validators: [isValidEmail, hasMinLength(10)] });
 
     const form = initFields(
       { name: 'select1', items: [{ id: 1, label: 'text 1' }, { id: 2, label: 'text 2' }] },
+      { name: 'select2', items: [], isHidden: true },
       { name: 'check0', isHidden: true },
       'check1',
       'check2',
@@ -295,13 +314,22 @@ export default {
       form,
       form2,
       form3,
+      form4,
+      form5,
       isValid: 'unknown',
+      test2: null,
     };
   },
 
   methods: {
     onSubmit({ isValid }) {
       this.isValid = isValid;
+    },
+    onSubmit5({ form, isValid }) {
+      if (isValid) {
+        form.input501.setInvalid('this message was added after submitting');
+        focusFirst(form);
+      }
     },
   },
 };
