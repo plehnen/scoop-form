@@ -13,6 +13,7 @@
     "build:bundle": "vue-cli-service build --target lib --name scoopForm ./src/index.js",
     "build:npm": "rollup -c rollup.config.js",
     "lint": "run-s lint:all:*",
+    "publish": "npm publish --access public",
     "lint:all:eslint": "yarn lint:eslint --ext .js,.vue .",
     "lint:all:markdownlint": "yarn lint:markdownlint \"docs/*.md\" \"*.md\"",
     "lint:all:prettier": "yarn lint:prettier \"**/*.{js,json,css,scss,vue,html,md}\"",
